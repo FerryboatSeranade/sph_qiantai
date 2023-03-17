@@ -21,7 +21,8 @@ export default new Router({
             component: () => import('@/pages/Search.vue'),
             meta: {
                 showFooter: true
-            }
+            },
+            props: true
         },
         {
             path: '/register',
