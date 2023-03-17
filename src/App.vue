@@ -6,7 +6,7 @@
     ------------------------------------
 <!--    <Footer></Footer>-->
 <!--    在路由到/login和/register时不展示footer组件-->
-    <Footer v-if="$route.path !== '/login' && $route.path !== '/register'"></Footer>
+    <Footer v-show="$route.path !== '/login' && $route.path !== '/register'"></Footer>
 
 
   </div>
