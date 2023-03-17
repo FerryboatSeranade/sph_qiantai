@@ -11,7 +11,7 @@ export default new Router({
             path: '/home',
             component: Home,
             meta: {
-               showFooter: true
+                showFooter: true
             }
         },
         // 引入pages下的所有组件作为路由配置项
@@ -22,7 +22,12 @@ export default new Router({
             meta: {
                 showFooter: true
             },
-            props: true
+            // props: true
+            props: (route) => ({
+                searchText: route.params.searchText,
+                testStr001: 'testStr001',
+                testStr002: 'testStr002'
+            })
         },
         {
             path: '/register',
