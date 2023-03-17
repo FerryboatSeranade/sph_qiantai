@@ -47,7 +47,7 @@ export default new Router({
         },
         {
             path: '*',
-            redirect: `${process.env.BASE_URL}home`
+            redirect: '/home'
         }
     ]
 })
