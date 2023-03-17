@@ -32,7 +32,8 @@
       </h1>
       <div class="searchArea">
         <form action="###" class="searchForm">
-          <input type="text" id="autocomplete" class="input-error input-xxlarge"/>
+          <input type="text" id="autocomplete" class="input-error input-xxlarge" v-model="searchText"
+                 placeholder="请输入一些东西进行搜索"/>
           <button class="sui-btn btn-xlarge btn-danger" type="button" @click="goSearch">搜索</button>
         </form>
       </div>
@@ -44,7 +45,18 @@ export default {
   name: 'Header',
   methods: {
     goSearch() {
-      this.$router.push('/search');
+      this.$router.push({
+        path: '/search',
+        query: {
+          searchText: this.searchText
+        }
+      }).catch(()=>{});
+
+    }
+  },
+  data() {
+    return {
+      searchText: null
     }
   }
 }
