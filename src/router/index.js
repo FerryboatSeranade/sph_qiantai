@@ -6,6 +6,8 @@ import Home from "@/pages/Home.vue";
 Vue.use(Router)
 
 export default new Router({
+    mode: 'history', // 去掉url中的#。 由于 GitHub Pages 上的网站是静态网站，因此在使用路由功能时需要使用 history 模式。
+    base: '/sph_qiantai/',
     routes: [
         {
             path: '/home',
@@ -45,7 +47,7 @@ export default new Router({
         },
         {
             path: '*',
-            redirect: '/home'
+            redirect: `${process.env.BASE_URL}home`
         }
     ]
 })

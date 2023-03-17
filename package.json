@@ -2,13 +2,16 @@
   "name": "sph",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://FerryboatSeranade.github.io/sph_qiantai/",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "core-js": "^3.8.3",
+    "gh-pages": "^5.0.0",
     "less-loader": "5",
     "vue": "^2.6.14",
     "vue-router": "3"
