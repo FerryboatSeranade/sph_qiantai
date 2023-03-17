@@ -16,7 +16,8 @@ export default new Router({
         },
         // 引入pages下的所有组件作为路由配置项
         {
-            path: '/search',
+            path: '/search/:searchText',
+            name: 'Search',
             component: () => import('@/pages/Search.vue'),
             meta: {
                 showFooter: true

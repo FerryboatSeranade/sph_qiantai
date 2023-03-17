@@ -46,8 +46,9 @@ export default {
   methods: {
     goSearch() {
       this.$router.push({
-        path: '/search',
-        query: {
+        // path: '/search',
+        name: 'Search',
+        params: {
           searchText: this.searchText
         }
       }).catch(()=>{});
