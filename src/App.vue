@@ -1,15 +1,14 @@
 <template>
   <div id="app">
-    <router-link to="/home">这是首页。--------------</router-link>
-    <router-link to="/search">这是搜索--------------</router-link>
-    <router-link to="/register">这是注册--------------</router-link>
-    <router-link to="/login">这是登录--------------</router-link>
-
     <Header/>
     ------------------------------------
     <router-view></router-view>
     ------------------------------------
-    <Footer></Footer>
+<!--    <Footer></Footer>-->
+<!--    在路由到/login和/register时不展示footer组件-->
+    <Footer v-if="$route.path !== '/login' && $route.path !== '/register'"></Footer>
+
+
   </div>
 </template>
 
