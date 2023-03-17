@@ -9,20 +9,32 @@ export default new Router({
     routes: [
         {
             path: '/home',
-            component: Home
+            component: Home,
+            meta: {
+               showFooter: true
+            }
         },
         // 引入pages下的所有组件作为路由配置项
         {
+            path: '/search',
+            component: () => import('@/pages/Search.vue'),
+            meta: {
+                showFooter: true
+            }
+        },
+        {
             path: '/register',
-            component: () => import('@/pages/Register.vue')
+            component: () => import('@/pages/Register.vue'),
+            meta: {
+                showFooter: false
+            }
         },
         {
             path: '/login',
-            component: () => import('@/pages/Login.vue')
-        },
-        {
-            path: '/search',
-            component: () => import('@/pages/Search.vue')
+            component: () => import('@/pages/Login.vue'),
+            meta: {
+                showFooter: false
+            }
         },
         {
             path: '*',
