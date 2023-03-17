@@ -1,7 +1,14 @@
 <template>
   <div id="app">
+    <router-link to="/home">这是首页。--------------</router-link>
+    <router-link to="/search">这是搜索--------------</router-link>
+    <router-link to="/register">这是注册--------------</router-link>
+    <router-link to="/login">这是登录--------------</router-link>
+
     <Header/>
-    这是跟组件。
+    ------------------------------------
+    <router-view></router-view>
+    ------------------------------------
     <Footer></Footer>
   </div>
 </template>
