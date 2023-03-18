@@ -1,7 +1,7 @@
 <template>
   <div class="type-nav">
     <div class="container">
-      <div @mouseleave="resetIndex">
+      <div @mouseleave="resetIndex"><!--事件委派/事件代理-->
         <h2 class="all">全部商品分类</h2>
         <div class="sort">
           <div class="all-sort-list2" >
