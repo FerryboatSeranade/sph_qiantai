@@ -47,6 +47,8 @@
 </template>
 <script>
 import {mapActions, mapState} from "vuex";
+//节流lodash
+import {throttle} from 'lodash';
 
 export default {
   name: 'TypeNav',
@@ -58,15 +60,20 @@ export default {
     // name() {
     //
     // }
-    changeIndex(index) {
-      //鼠标正常移动时，hover时都会触发；但是当鼠标快速移动时，只有部分能够触发
-      //因为浏览器解析和执行代码也需要时间，如果console.log这段代码换成业务代码，很容易造成卡顿现象。
-      // 因此需要一些策略来解决这样的问题：防抖&节流。
-      // 防抖：前面的所有的触发都被取消，最后一次执行在规定的时间之后才会触发，也就是说如果连续快速的触发只会执行一次 (加入确认机制)
-      // 节流：在规定的间隔时间范围内不会重复触发回调，只有大于这个时间间隔才会触发回调，把频繁触发变为少量触发 (加入cd机制)
-      console.log("鼠标进入",index)
+    // changeIndex(index) {
+    //   //鼠标正常移动时，hover时都会触发；但是当鼠标快速移动时，只有部分能够触发
+    //   //因为浏览器解析和执行代码也需要时间，如果console.log这段代码换成业务代码，很容易造成卡顿现象。
+    //   // 因此需要一些策略来解决这样的问题：防抖&节流。
+    //   // 防抖：前面的所有的触发都被取消，最后一次执行在规定的时间之后才会触发，也就是说如果连续快速的触发只会执行一次 (加入确认机制)
+    //   // 节流：在规定的间隔时间范围内不会重复触发回调，只有大于这个时间间隔才会触发回调，把频繁触发变为少量触发 (加入cd机制)
+    //   console.log("鼠标进入",index)
+    //   this.currentIndex = index
+    // },
+    //上面用节流写法
+    changeIndex: throttle(function (index) {
+      console.log("鼠标进入", index)
       this.currentIndex = index
-    },
+    }, 1000),
     resetIndex() {
       this.currentIndex = -1
     }
