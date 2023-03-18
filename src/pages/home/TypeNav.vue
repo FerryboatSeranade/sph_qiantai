@@ -9,19 +9,23 @@
                  :class="{cur:currentIndex===index}">
               <h3 @mouseover="changeIndex(index)">
 <!--                <a href="">{{ c1.categoryName }}</a>-->
-                <router-link to="/search">{{ c1.categoryName }}</router-link>
+<!--                <router-link to="/search">{{ c1.categoryName }}</router-link>-->
+                <a @click="goSearch">{{c1.categoryName}}</a>
               </h3>
               <div class="item-list clearfix" :style="{display:(currentIndex===index?'block':'none')}">
                 <div class="subitem" v-for="(c2,index) in c1.categoryChild" :key="c2.categoryId">
                   <dl class="fore">
                     <dt>
 <!--                      <a href="">{{ c2.categoryName }}</a>-->
-                      <router-link to="/search">{{ c2.categoryName }}</router-link>
+<!--                      <router-link to="/search">{{ c2.categoryName }}</router-link>-->
+                      <a @click="goSearch">{{c2.categoryName}}</a>
+
                     </dt>
                     <dd>
                       <em v-for="(c3,index) in c2.categoryChild" :key="c3.categoryId">
 <!--                        <a href="">{{ c3.categoryName }}</a>-->
-                        <router-link to="/search">{{ c3.categoryName }}</router-link>
+<!--                        <router-link to="/search">{{ c3.categoryName }}</router-link>-->
+                        <a @click="goSearch">{{c3.categoryName}}</a>
                       </em>
                     </dd>
 
@@ -79,6 +83,10 @@ export default {
     }, 50),
     resetIndex() {
       this.currentIndex = -1
+    },
+    goSearch() {
+      // 点击跳转到search路由
+      this.$router.push('/search/<123456>')
     }
   },
   mounted() {
