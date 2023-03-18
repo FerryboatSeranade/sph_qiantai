@@ -73,7 +73,7 @@ export default {
     changeIndex: throttle(function (index) {
       console.log("鼠标进入", index)
       this.currentIndex = index
-    }, 1000),
+    }, 50),
     resetIndex() {
       this.currentIndex = -1
     }
