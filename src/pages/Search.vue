@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import TypeNav from "@/pages/home/TypeNav.vue";
+import TypeNav from "@/components/sub/TypeNav.vue";
 
 export default {
   name: "Search",

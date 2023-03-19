@@ -65,6 +65,13 @@ export default {
   computed: {
     ...mapState('typeNav', ['categoryList'])
   },
+  data() {
+    return {
+      currentIndex: -1,
+      showThreeStageCategory: true,
+      isHome: false
+    }
+  },
   methods: {
     ...mapActions('typeNav', ['getCategoryList']),
     // name() {
@@ -89,7 +96,7 @@ export default {
     },
     leaveThreeStageCategoryArea() {
       this.resetIndex()
-      if (this.$route.path !== "/home") {
+      if (!this.isHome) {
         this.showThreeStageCategory = false
       }
     },
@@ -114,20 +121,12 @@ export default {
     }
   },
   mounted() {
-    //dispatch
-    // this.categoryList=this.getCategoryList()
-    // console.log(this.categoryList,"####")
-    this.getCategoryList()
-    if (this.$route.path !== '/home') {
-      this.showThreeStageCategory = false
+    this.isHome = this.$route.path === '/home';
+    this.getCategoryList();
+    if (!this.isHome) {
+      this.showThreeStageCategory = false;
     }
   },
-  data() {
-    return {
-      currentIndex: -1,
-      showThreeStageCategory: true
-    }
-  }
 }
 </script>
 <style scoped lang="less">

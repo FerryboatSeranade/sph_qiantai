@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import TypeNav from "@/pages/home/TypeNav.vue";
+import TypeNav from "@/components/sub/TypeNav.vue";
 import ListContainer from "@/pages/home/ListContainer.vue";
 import Recommend from "@/pages/home/Recommend.vue";
 import Rank from "../../谷粒商城-辉洪/Rank.vue";
