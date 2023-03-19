@@ -4,41 +4,43 @@
       <div @mouseleave="leaveThreeStageCategoryArea" @mouseenter="showThreeStageCategory=true">
         <!--事件委派/事件代理-->
         <h2 class="all">全部商品分类</h2>
-        <div class="sort" v-show="showThreeStageCategory">
-          <div class="all-sort-list2" @click="goSearch"> <!--事件委派减少事件处理函数副本&渲染时绑定到组件的event listener-->
-            <div class="item" v-for="(c1,index) in categoryList" :key="c1.categoryId"
-                 :class="{cur:currentIndex===index}">
-              <h3 @mouseover="changeIndex(index)">
-                <!--                <a href="">{{ c1.categoryName }}</a>-->
-                <!--                <router-link to="/search">{{ c1.categoryName }}</router-link>-->
-                <a :data-category-name="c1.categoryName" :data-category1-id="c1.categoryId">{{ c1.categoryName }}</a>
-              </h3>
-              <div class="item-list clearfix" :style="{display:(currentIndex===index?'block':'none')}">
-                <div class="subitem" v-for="(c2,index) in c1.categoryChild" :key="c2.categoryId">
-                  <dl class="fore">
-                    <dt>
-                      <!--                      <a href="">{{ c2.categoryName }}</a>-->
-                      <!--                      <router-link to="/search">{{ c2.categoryName }}</router-link>-->
-                      <a :data-category-name="c1.categoryName"
-                         :data-category2-id="c2.categoryId">{{ c2.categoryName }}</a>
-
-                    </dt>
-                    <dd>
-                      <em v-for="(c3,index) in c2.categoryChild" :key="c3.categoryId">
-                        <!--                        <a href="">{{ c3.categoryName }}</a>-->
-                        <!--                        <router-link to="/search">{{ c3.categoryName }}</router-link>-->
+        <transition name="sort">
+          <div class="sort" v-show="showThreeStageCategory">
+            <div class="all-sort-list2" @click="goSearch"> <!--事件委派减少事件处理函数副本&渲染时绑定到组件的event listener-->
+              <div class="item" v-for="(c1,index) in categoryList" :key="c1.categoryId"
+                   :class="{cur:currentIndex===index}">
+                <h3 @mouseover="changeIndex(index)">
+                  <!--                <a href="">{{ c1.categoryName }}</a>-->
+                  <!--                <router-link to="/search">{{ c1.categoryName }}</router-link>-->
+                  <a :data-category-name="c1.categoryName" :data-category1-id="c1.categoryId">{{ c1.categoryName }}</a>
+                </h3>
+                <div class="item-list clearfix" :style="{display:(currentIndex===index?'block':'none')}">
+                  <div class="subitem" v-for="(c2,index) in c1.categoryChild" :key="c2.categoryId">
+                    <dl class="fore">
+                      <dt>
+                        <!--                      <a href="">{{ c2.categoryName }}</a>-->
+                        <!--                      <router-link to="/search">{{ c2.categoryName }}</router-link>-->
                         <a :data-category-name="c1.categoryName"
-                           :data-category3-id="c3.categoryId">{{ c3.categoryName }}</a>
-                      </em>
-                    </dd>
+                           :data-category2-id="c2.categoryId">{{ c2.categoryName }}</a>
 
-                  </dl>
+                      </dt>
+                      <dd>
+                        <em v-for="(c3,index) in c2.categoryChild" :key="c3.categoryId">
+                          <!--                        <a href="">{{ c3.categoryName }}</a>-->
+                          <!--                        <router-link to="/search">{{ c3.categoryName }}</router-link>-->
+                          <a :data-category-name="c1.categoryName"
+                             :data-category3-id="c3.categoryId">{{ c3.categoryName }}</a>
+                        </em>
+                      </dd>
+
+                    </dl>
+                  </div>
                 </div>
               </div>
-            </div>
 
+            </div>
           </div>
-        </div>
+        </transition>
       </div>
 
       <nav class="nav">
@@ -245,6 +247,20 @@ export default {
           background-color: skyblue;
         }
       }
+    }
+
+    .sort-enter {
+      height: 0;
+      transform: rotate(0deg);
+    }
+
+    .sort-enter-to {
+      height: 461px;
+      transform: rotate(360deg);
+    }
+
+    .sort-enter-active {
+      transition: all 0.5s linear;
     }
   }
 }
