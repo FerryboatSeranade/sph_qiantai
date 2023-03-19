@@ -1,31 +1,34 @@
 <template>
   <div class="type-nav">
     <div class="container">
-      <div @mouseleave="resetIndex"><!--事件委派/事件代理-->
+      <div @mouseleave="leaveThreeStageCategoryArea" @mouseenter="showThreeStageCategory=true">
+        <!--事件委派/事件代理-->
         <h2 class="all">全部商品分类</h2>
-        <div class="sort">
+        <div class="sort" v-show="showThreeStageCategory">
           <div class="all-sort-list2" @click="goSearch"> <!--事件委派减少事件处理函数副本&渲染时绑定到组件的event listener-->
             <div class="item" v-for="(c1,index) in categoryList" :key="c1.categoryId"
                  :class="{cur:currentIndex===index}">
               <h3 @mouseover="changeIndex(index)">
-<!--                <a href="">{{ c1.categoryName }}</a>-->
-<!--                <router-link to="/search">{{ c1.categoryName }}</router-link>-->
-                <a :data-category-name="c1.categoryName" :data-category1-id="c1.categoryId">{{c1.categoryName}}</a>
+                <!--                <a href="">{{ c1.categoryName }}</a>-->
+                <!--                <router-link to="/search">{{ c1.categoryName }}</router-link>-->
+                <a :data-category-name="c1.categoryName" :data-category1-id="c1.categoryId">{{ c1.categoryName }}</a>
               </h3>
               <div class="item-list clearfix" :style="{display:(currentIndex===index?'block':'none')}">
                 <div class="subitem" v-for="(c2,index) in c1.categoryChild" :key="c2.categoryId">
                   <dl class="fore">
                     <dt>
-<!--                      <a href="">{{ c2.categoryName }}</a>-->
-<!--                      <router-link to="/search">{{ c2.categoryName }}</router-link>-->
-                      <a :data-category-name="c1.categoryName" :data-category2-id="c2.categoryId">{{c2.categoryName}}</a>
+                      <!--                      <a href="">{{ c2.categoryName }}</a>-->
+                      <!--                      <router-link to="/search">{{ c2.categoryName }}</router-link>-->
+                      <a :data-category-name="c1.categoryName"
+                         :data-category2-id="c2.categoryId">{{ c2.categoryName }}</a>
 
                     </dt>
                     <dd>
                       <em v-for="(c3,index) in c2.categoryChild" :key="c3.categoryId">
-<!--                        <a href="">{{ c3.categoryName }}</a>-->
-<!--                        <router-link to="/search">{{ c3.categoryName }}</router-link>-->
-                        <a :data-category-name="c1.categoryName" :data-category3-id="c3.categoryId">{{c3.categoryName}}</a>
+                        <!--                        <a href="">{{ c3.categoryName }}</a>-->
+                        <!--                        <router-link to="/search">{{ c3.categoryName }}</router-link>-->
+                        <a :data-category-name="c1.categoryName"
+                           :data-category3-id="c3.categoryId">{{ c3.categoryName }}</a>
                       </em>
                     </dd>
 
@@ -78,26 +81,32 @@ export default {
     // },
     //上面用节流写法
     changeIndex: throttle(function (index) {
-      console.log("鼠标进入", index)
+      // console.log("鼠标进入", index)
       this.currentIndex = index
     }, 50),
     resetIndex() {
       this.currentIndex = -1
     },
+    leaveThreeStageCategoryArea() {
+      this.resetIndex()
+      if (this.$route.path !== "/home") {
+        this.showThreeStageCategory = false
+      }
+    },
     goSearch(event) {//默认就有事件
-      let element=event.target;
-      let {categoryName,category1Id,category2Id,category3Id}=element.dataset; //结构赋值,dataset可以拿到自定义属性！
-      let location={name:"Search"};
-      let query={categoryName};
+      let element = event.target;
+      let {categoryName, category1Id, category2Id, category3Id} = element.dataset; //结构赋值,dataset可以拿到自定义属性！
+      let location = {name: "Search"};
+      let query = {categoryName};
       if (categoryName) {
-        if(category1Id){
-          query.category1Id=category1Id
-        }else if(category2Id) {
+        if (category1Id) {
+          query.category1Id = category1Id
+        } else if (category2Id) {
           query.category2Id = category2Id
-        }else if(category3Id) {
+        } else if (category3Id) {
           query.category3Id = category3Id
         }
-        location.query=query;
+        location.query = query;
         // 点击跳转到search路由
         this.$router.push(location);//编程式导航的对象跳转方式
       }
@@ -109,10 +118,14 @@ export default {
     // this.categoryList=this.getCategoryList()
     // console.log(this.categoryList,"####")
     this.getCategoryList()
+    if (this.$route.path !== '/home') {
+      this.showThreeStageCategory = false
+    }
   },
   data() {
     return {
-      currentIndex: -1
+      currentIndex: -1,
+      showThreeStageCategory: true
     }
   }
 }
