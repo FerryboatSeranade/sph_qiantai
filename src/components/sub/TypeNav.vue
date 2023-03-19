@@ -116,6 +116,9 @@ export default {
           query.category3Id = category3Id
         }
         location.query = query;
+        if (this.$route.params != null) {
+          location.params = this.$route.params;
+        }
         // 点击跳转到search路由
         this.$router.push(location);//编程式导航的对象跳转方式
       }

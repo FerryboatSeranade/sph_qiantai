@@ -50,8 +50,10 @@ export default {
         name: 'Search',
         params: {
           searchText: this.searchText
-        }
-      }).catch(()=>{});
+        },
+        query: this.$route.query
+      }).catch(() => {
+      });
 
     }
   },
@@ -64,7 +66,7 @@ export default {
 </script>
 <style scoped lang="less">
 .header {
-  &>.top {
+  & > .top {
     background-color: #eaeaea;
     height: 30px;
     line-height: 30px;
@@ -95,7 +97,7 @@ export default {
         a {
           padding: 0 10px;
 
-          &+a {
+          & + a {
             border-left: 1px solid #b3aeae;
           }
         }
@@ -105,7 +107,7 @@ export default {
     }
   }
 
-  &>.bottom {
+  & > .bottom {
     width: 1200px;
     margin: 0 auto;
     overflow: hidden;
