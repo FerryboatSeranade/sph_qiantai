@@ -124,7 +124,7 @@ export default {
   },
   mounted() {
     this.isHome = this.$route.path === '/home';
-    this.getCategoryList();
+    // this.getCategoryList();
     if (!this.isHome) {
       this.showThreeStageCategory = false;
     }

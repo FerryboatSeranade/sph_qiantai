@@ -4,8 +4,8 @@
     ------------------------------------
     <router-view></router-view>
     ------------------------------------
-<!--    <Footer></Footer>-->
-<!--    在路由到/login和/register时不展示footer组件-->
+    <!--    <Footer></Footer>-->
+    <!--    在路由到/login和/register时不展示footer组件-->
     <Footer v-show="$route.meta.showFooter"></Footer>
 
 
@@ -21,6 +21,9 @@ export default {
   components: {
     Footer,
     Header,
+  },
+  mounted() {
+    this.$store.dispatch('typeNav/getCategoryList');
   }
 }
 </script>
