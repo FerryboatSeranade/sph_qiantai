@@ -18,7 +18,7 @@ export default new Router({
         },
         // 引入pages下的所有组件作为路由配置项
         {
-            path: '/search/:searchText',
+            path: '/search/:searchText?',//添加?表示可选项
             name: 'Search',
             component: () => import('@/pages/Search.vue'),
             meta: {

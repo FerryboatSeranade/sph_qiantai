@@ -87,7 +87,7 @@ export default {
     goSearch(event) {//默认就有事件
       let element=event.target;
       let {categoryName,category1Id,category2Id,category3Id}=element.dataset; //结构赋值,dataset可以拿到自定义属性！
-      let location={name:"/search"};
+      let location={name:"Search"};
       let query={categoryName};
       if (categoryName) {
         if(category1Id){
