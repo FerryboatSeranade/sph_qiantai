@@ -6,17 +6,20 @@
         <div class="swiper-container" id="mySwiper">
           <div class="swiper-wrapper">
             <div class="swiper-slide">
-              <img src="@/assets/images/banner1.jpg"/>
+              <img :src="pickBannerImg(1)"/>
+              <!--              <span>{{// listContainer.banners[0].imgUrl}}</span>-->
+              <!--              <span>{{listContainer.banners[0]["imgUrl"]}}</span>-->
+              <!--              <img src="/images/banner2.jpg"/>-->
             </div>
-<!--            <div class="swiper-slide">-->
-<!--              <img src="@/assets/images/banner2.jpg"/>-->
-<!--            </div>-->
-<!--            <div class="swiper-slide">-->
-<!--              <img src="@/assets/images/banner3.jpg"/>-->
-<!--            </div>-->
-<!--            <div class="swiper-slide">-->
-<!--              <img src="@/assets/images/banner4.jpg"/>-->
-<!--            </div>-->
+            <!--            <div class="swiper-slide">-->
+            <!--              <img src="@/assets/images/banner2.jpg"/>-->
+            <!--            </div>-->
+            <!--            <div class="swiper-slide">-->
+            <!--              <img src="@/assets/images/banner3.jpg"/>-->
+            <!--            </div>-->
+            <!--            <div class="swiper-slide">-->
+            <!--              <img src="@/assets/images/banner4.jpg"/>-->
+            <!--            </div>-->
           </div>
           <!-- 如果需要分页器 -->
           <div class="swiper-pagination"></div>
@@ -109,8 +112,23 @@
   </div>
 </template>
 <script>
+import {mapState} from "vuex";
+
 export default {
-  name: 'ListContainer'
+  name: 'ListContainer',
+  methods: {
+    pickBannerImg(index) {
+      // console.log("@@@", this.listContainer.banners[index]?.imgUrl)
+      // console.log(this.listContainer.banners[index]['imgUrl'])
+      return this.listContainer.banners[index]['imgUrl'];
+    }
+  },
+  computed: {
+    ...mapState(['listContainer', ['banners']])
+  },
+  mounted() {
+    this.$store.dispatch('listContainer/getBanners')
+  }
 }
 </script>
 
