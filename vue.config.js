@@ -10,6 +10,9 @@ module.exports = defineConfig({
         proxy: {
             '/api': {
                 target: 'http://gmall-h5-api.atguigu.cn',
+            },
+            '/mock':{
+                target: 'http://localhost:8000',
             }
         }
     }
