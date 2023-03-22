@@ -7,6 +7,7 @@
           <div class="swiper-wrapper">
             <div class="swiper-slide">
               <img :src="pickBannerImg(1)"/>
+<!--              <img :src="pickBannerImg2(1)"/>-->
               <!--              <span>{{// listContainer.banners[0].imgUrl}}</span>-->
               <!--              <span>{{listContainer.banners[0]["imgUrl"]}}</span>-->
               <!--              <img src="/images/banner2.jpg"/>-->
@@ -114,25 +115,43 @@
 <script>
 import {mapState} from "vuex";
 
-export default {
+const vc = {
   name: 'ListContainer',
   methods: {
-    // pickBannerImg(index) {
-    //   console.log("listContainer.banner.length", this.listContainer.banners.length)
-    //   return this.listContainer.banners[index]['imgUrl'];
-    // }
-  },
-  computed: {
-    ...mapState(['listContainer', ['banners']]),
     pickBannerImg(index) {
-      console.log("listContainer.banner.length", this.listContainer.banners.length)
+      console.log("in methods-- listContainer.banner.length", this.listContainer.banners.length)
       return this.listContainer.banners[index]['imgUrl'];
     }
   },
+  computed: {
+    ...mapState(['listContainer', ['banners']]),
+    // pickBannerImg(index) {
+    //   console.log("in computed-- listContainer.banner.length", this.listContainer.banners.length)
+    //   return this.listContainer.banners[index]['imgUrl'];
+    // }
+  },
   mounted() {
-    this.$store.dispatch('listContainer/getBanners')
+    console.log("mounted method evaluated")
+    this.$store.dispatch('listContainer/getBanners') //发送一个请求获取banners数据,是一个数组，有四张图片
+  },
+  beforeUpdate() {
+    console.log("beforeUpdate method evaluated")
+  },
+  /*想调试解决问题,想到了updated和watch两种方式,就生出了比较它们二者的想法*/
+  updated() {
+    console.log("updated method evaluated")
+  },
+  watch: {
+    listContainer: {//为什么监视listContainer而不是banners是因为 监视的属性必须存在，才能进行监视, 而banners
+      handler: function (newVal, oldVal) {
+        console.log("watch listContainer changed:\n from :", oldVal, "\n to:", newVal)
+        console.log("watch listContainer.length changed:\n from :", oldVal.banners.length, "\n to:", newVal.banners.length)
+      },
+      deep: true
+    }
   }
 }
+export default vc
 </script>
 
 <style scoped lang="less">
