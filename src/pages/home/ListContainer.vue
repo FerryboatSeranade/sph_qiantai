@@ -117,14 +117,17 @@ import {mapState} from "vuex";
 export default {
   name: 'ListContainer',
   methods: {
-    pickBannerImg(index) {
-      // console.log("@@@", this.listContainer.banners[index]?.imgUrl)
-      // console.log(this.listContainer.banners[index]['imgUrl'])
-      return this.listContainer.banners[index]['imgUrl'];
-    }
+    // pickBannerImg(index) {
+    //   console.log("listContainer.banner.length", this.listContainer.banners.length)
+    //   return this.listContainer.banners[index]['imgUrl'];
+    // }
   },
   computed: {
-    ...mapState(['listContainer', ['banners']])
+    ...mapState(['listContainer', ['banners']]),
+    pickBannerImg(index) {
+      console.log("listContainer.banner.length", this.listContainer.banners.length)
+      return this.listContainer.banners[index]['imgUrl'];
+    }
   },
   mounted() {
     this.$store.dispatch('listContainer/getBanners')
