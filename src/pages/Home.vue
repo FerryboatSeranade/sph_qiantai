@@ -1,17 +1,17 @@
 <template>
   <div class="home">
     <h1>这是Home</h1>
-<!--    三级商品联动-->
+    <!--    三级商品联动-->
     <TypeNav></TypeNav>
-<!--   轮播图 -->
+    <!--   轮播图 -->
     <ListContainer></ListContainer>
-<!--    今日推荐-->
+    <!--    今日推荐-->
     <Recommend></Recommend>
-<!--   商品排行 -->
+    <!--   商品排行 -->
     <Rank/>
     <Like></Like>
-<!--    <Floor></Floor>-->
-<!--    <Floor></Floor>-->
+    <!--    <Floor></Floor>-->
+    <!--    <Floor></Floor>-->
     <Floor v-for="floor in floor.floors" :key="floor.id" :list="floor"></Floor>
     <Brand></Brand>
   </div>
@@ -41,10 +41,12 @@ export default {
     ...mapState(['floor', ['floors']])
   },
   methods: {
-    ...mapMutations(['addCartCount','subCartCount'])
+    ...mapMutations(['addCartCount', 'subCartCount'])
   },
   mounted() {
-    this.$store.dispatch('floor/getFloors')
+    setTimeout(() => {
+      this.$store.dispatch('floor/getFloors')
+    }, 2000)
   }
 }
 </script>
