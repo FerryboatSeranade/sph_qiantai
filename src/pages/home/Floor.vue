@@ -93,7 +93,11 @@
 </template>
 <script>
 export default {
-  name: 'Floor'
+  name: 'Floor',
+  props: ['list'],
+  mounted() {
+    console.log("list", this.list)
+  }
 }
 </script>
 

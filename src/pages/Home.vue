@@ -10,8 +10,9 @@
 <!--   商品排行 -->
     <Rank/>
     <Like></Like>
-    <Floor></Floor>
-    <Floor></Floor>
+<!--    <Floor></Floor>-->
+<!--    <Floor></Floor>-->
+    <Floor v-for="floor in floor.floors" :key="floor.id" :list="floor"></Floor>
     <Brand></Brand>
   </div>
 
@@ -36,10 +37,14 @@ export default {
     }
   },
   computed: {
-    ...mapState(['cartCount'])
+    ...mapState(['cartCount']),
+    ...mapState(['floor', ['floors']])
   },
   methods: {
     ...mapMutations(['addCartCount','subCartCount'])
+  },
+  mounted() {
+    this.$store.dispatch('floor/getFloors')
   }
 }
 </script>
