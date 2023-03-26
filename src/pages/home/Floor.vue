@@ -46,15 +46,17 @@
             <div class="floorBanner">
               <div class="swiper-container" id="floor1Swiper">
                 <div class="swiper-wrapper">
-                  <div class="swiper-slide">
-                    <img src="@/assets/images/floor-1-b01.png">
+                  <div class="swiper-slide" v-for="(carousel,index) in list.carouselList" :key="carousel.id">
+                    <!--                    <img src="@/assets/images/floor-1-b01.png">-->
+                    <!--                    <span>{{carousel.imgUrl}}</span>-->
+                    <img :src="carousel.imgUrl">
                   </div>
-<!--                  <div class="swiper-slide">-->
-<!--                    <img src="@/assets/images/floor-1-b02.png">-->
-<!--                  </div>-->
-<!--                  <div class="swiper-slide">-->
-<!--                    <img src="@/assets/images/floor-1-b03.png">-->
-<!--                  </div>-->
+                  <!--                  <div class="swiper-slide">-->
+                  <!--                    <img src="@/assets/images/floor-1-b02.png">-->
+                  <!--                  </div>-->
+                  <!--                  <div class="swiper-slide">-->
+                  <!--                    <img src="@/assets/images/floor-1-b03.png">-->
+                  <!--                  </div>-->
                 </div>
                 <!-- 如果需要分页器 -->
                 <div class="swiper-pagination"></div>
@@ -92,12 +94,47 @@
   </div>
 </template>
 <script>
+import Swiper from "swiper";
+
 export default {
   name: 'Floor',
   props: ['list'],
   mounted() {
-    console.log("list", this.list)
-  }
+    this.mySwiper = new Swiper('.swiper-container', {
+      loop: true,
+      autoplay: true,
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+    })
+  },
+  // watch: {
+  //   'list.carouselList': {
+  //     handler(newVal, oldVal) {
+  //       console.log("你好")
+  //       this.$nextTick(() => {
+  //         this.mySwiper = new Swiper('.swiper-container', {
+  //           loop: true,
+  //           autoplay: true,
+  //           pagination: {
+  //             el: '.swiper-pagination',
+  //             clickable: true,
+  //           },
+  //           navigation: {
+  //             nextEl: '.swiper-button-next',
+  //             prevEl: '.swiper-button-prev',
+  //           },
+  //         })
+  //       })
+  //     },
+  //     deep: true // 监听数组的变化
+  //   }
+  // }
 }
 </script>
 
