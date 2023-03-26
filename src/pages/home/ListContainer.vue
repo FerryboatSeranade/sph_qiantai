@@ -123,21 +123,27 @@ const vc = {
   },
   mounted() {
     this.$store.dispatch('listContainer/getBanners') //发送一个请求获取banners数据,是一个数组，有四张图片
-    setTimeout(() => {
-      new Swiper('.swiper-container', {
-        loop: true,
-        autoplay: true,
-        pagination: {
-          el: '.swiper-pagination',
-          clickable: true,
-        },
-        navigation: {
-          nextEl: '.swiper-button-next',
-          prevEl: '.swiper-button-prev',
-        },
-      })
-    }, 1000)
-
+  },
+  watch: {
+    'listContainer.banners': {
+      handler(newVal, oldVal) {
+        this.$nextTick(() => {
+          this.mySwiper = new Swiper('.swiper-container', {
+            loop: true,
+            autoplay: true,
+            pagination: {
+              el: '.swiper-pagination',
+              clickable: true,
+            },
+            navigation: {
+              nextEl: '.swiper-button-next',
+              prevEl: '.swiper-button-prev',
+            },
+          })
+        })
+      },
+      deep: true // 监听数组的变化
+    }
   }
 }
 export default vc
