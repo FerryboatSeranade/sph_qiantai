@@ -20,7 +20,8 @@ export default new Router({
         {
             path: '/search/:searchText?',//添加?表示可选项
             name: 'Search',
-            component: () => import('@/pages/Search.vue'),
+            // component: () => import('@/pages/Search.vue'),
+            component: () => import('@/pages/search/index.vue'),
             meta: {
                 showFooter: true
             },
