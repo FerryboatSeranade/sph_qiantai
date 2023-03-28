@@ -78,41 +78,41 @@ export default {
   name: 'Floor',
   props: ['list'],
   mounted() {
-    this.mySwiper = new Swiper('.swiper-container', {
-      loop: true,
-      autoplay: true,
-      pagination: {
-        el: '.swiper-pagination',
-        clickable: true,
-      },
-      navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
-      },
-    })
+    // this.mySwiper = new Swiper('.swiper-container', {
+    //   loop: true,
+    //   autoplay: true,
+    //   pagination: {
+    //     el: '.swiper-pagination',
+    //     clickable: true,
+    //   },
+    //   navigation: {
+    //     nextEl: '.swiper-button-next',
+    //     prevEl: '.swiper-button-prev',
+    //   },
+    // })
   },
-  // watch: {
-  //   'list.carouselList': {
-  //     handler(newVal, oldVal) {
-  //       console.log("你好")
-  //       this.$nextTick(() => {
-  //         this.mySwiper = new Swiper('.swiper-container', {
-  //           loop: true,
-  //           autoplay: true,
-  //           pagination: {
-  //             el: '.swiper-pagination',
-  //             clickable: true,
-  //           },
-  //           navigation: {
-  //             nextEl: '.swiper-button-next',
-  //             prevEl: '.swiper-button-prev',
-  //           },
-  //         })
-  //       })
-  //     },
-  //     deep: true // 监听数组的变化
-  //   }
-  // }
+  watch: {
+    'list.carouselList': {
+      immediate: true,
+      handler(newVal, oldVal) {
+        this.$nextTick(() => {
+          this.mySwiper = new Swiper('.swiper-container', {
+            loop: true,
+            autoplay: true,
+            pagination: {
+              el: '.swiper-pagination',
+              clickable: true,
+            },
+            navigation: {
+              nextEl: '.swiper-button-next',
+              prevEl: '.swiper-button-prev',
+            },
+          })
+        })
+      },
+      deep: true // 监听数组的变化
+    }
+  }
 }
 </script>
 
