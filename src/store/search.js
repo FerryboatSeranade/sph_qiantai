@@ -21,7 +21,9 @@ const actions = {
     }
 }
 
-const getters = {}
+const getters = {
+    goodsList: state => state.searchList.goodsList || [],
+}
 export default {
     namespaced: true,
     state,
