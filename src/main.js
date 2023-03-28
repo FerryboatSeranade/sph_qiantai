@@ -5,6 +5,10 @@ import router from './router'
 import store from './store'
 import "swiper/css/swiper.css"
 
+import Carousel from "@/components/sub/Carousel.vue";
+
+Vue.component(Carousel.name, Carousel)
+
 Vue.config.productionTip = false
 const vm = new Vue({
     render: h => h(App),
