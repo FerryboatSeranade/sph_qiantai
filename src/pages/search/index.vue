@@ -145,12 +145,25 @@ export default {
       this.$store.dispatch('search/getSearchList', this.searchParams)
     }
   },
+  beforeMount() {
+    Object.assign(this.searchParams, this.$route.query, {keyword: this.$route.params.searchText || ""})
+  },
   mounted() {
     this.getData()
   },
   computed: {
     ...mapGetters('search', ['goodsList'])
   },
+  watch: {
+    //监控route的变化
+    $route(newVal, oldVal) {
+      Object.assign(this.searchParams, this.$route.query, {keyword: this.$route.params.searchText || ""})
+      this.getData()
+      this.searchParams.category1Id = ''
+      this.searchParams.category2Id = ''
+      this.searchParams.category3Id = ''
+    }
+  }
 }
 </script>
 
