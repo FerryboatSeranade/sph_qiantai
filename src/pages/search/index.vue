@@ -150,7 +150,12 @@ export default {
             this.searchParams.category1Id = undefined
             this.searchParams.category2Id = undefined
             this.searchParams.category3Id = undefined
-            this.getData()
+            // this.getData()
+            //虽然不会触发mounted，但是会改变$route进而触发watch->其中会调用getData()因而上面这行可以注释
+            this.$router.push({
+                name: 'Search',
+                params: this.$route.params
+            })
         }
     },
     beforeMount() {
