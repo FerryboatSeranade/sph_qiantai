@@ -20,7 +20,7 @@
                       <dt>
                         <!--                      <a href="">{{ c2.categoryName }}</a>-->
                         <!--                      <router-link to="/search">{{ c2.categoryName }}</router-link>-->
-                        <a :data-category-name="c1.categoryName"
+                        <a :data-category-name="c2.categoryName"
                            :data-category2-id="c2.categoryId">{{ c2.categoryName }}</a>
 
                       </dt>
@@ -28,7 +28,7 @@
                         <em v-for="(c3,index) in c2.categoryChild" :key="c3.categoryId">
                           <!--                        <a href="">{{ c3.categoryName }}</a>-->
                           <!--                        <router-link to="/search">{{ c3.categoryName }}</router-link>-->
-                          <a :data-category-name="c1.categoryName"
+                          <a :data-category-name="c3.categoryName"
                              :data-category3-id="c3.categoryId">{{ c3.categoryName }}</a>
                         </em>
                       </dd>
