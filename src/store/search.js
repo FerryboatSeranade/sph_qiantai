@@ -23,6 +23,8 @@ const actions = {
 
 const getters = {
     goodsList: state => state.searchList.goodsList || [],
+    trademarkList: state => state.searchList.trademarkList || [],
+    attrsList: state => state.searchList.attrsList || [],
 }
 export default {
     namespaced: true,
