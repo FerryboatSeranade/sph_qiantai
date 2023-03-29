@@ -1,115 +1,115 @@
 <template>
-  <div>
-    <TypeNav/>
-    <div class="main">
-      <div class="py-container">
-        <!--bread-->
-        <div class="bread">
-          <ul class="fl sui-breadcrumb">
-            <li>
-              <a href="#">全部结果</a>
-            </li>
-          </ul>
-          <ul class="fl sui-tag">
-            <li class="with-x">手机</li>
-            <li class="with-x">iphone<i>×</i></li>
-            <li class="with-x">华为<i>×</i></li>
-            <li class="with-x">OPPO<i>×</i></li>
-          </ul>
-        </div>
-
-        <!--selector-->
-        <SearchSelector/>
-
-        <!--details-->
-        <div class="details clearfix">
-          <div class="sui-navbar">
-            <div class="navbar-inner filter">
-              <ul class="sui-nav">
-                <li class="active">
-                  <a href="#">综合</a>
-                </li>
-                <li>
-                  <a href="#">销量</a>
-                </li>
-                <li>
-                  <a href="#">新品</a>
-                </li>
-                <li>
-                  <a href="#">评价</a>
-                </li>
-                <li>
-                  <a href="#">价格⬆</a>
-                </li>
-                <li>
-                  <a href="#">价格⬇</a>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div class="goods-list">
-            <ul class="yui3-g">
-              <li class="yui3-u-1-5" v-for="(good, index) in goodsList" :key="good.id">
-                <div class="list-wrap">
-                  <div class="p-img">
-                    <a href="item.html" target="_blank"><img :src="good.defaultImg"/></a>
-                  </div>
-                  <div class="price">
-                    <strong>
-                      <em>¥</em>
-                      <i>{{ good.price }}</i>
-                    </strong>
-                  </div>
-                  <div class="attr">
-                    <a target="_blank" href="item.html"
-                       title="促销信息，下单即赠送三个月CIBN视频会员卡！【小米电视新品4A 58 火爆预约中】">{{
-                        good.title
-                      }}</a>
-                  </div>
-                  <div class="commit">
-                    <i class="command">已有<span>2000</span>人评价</i>
-                  </div>
-                  <div class="operate">
-                    <a href="success-cart.html" target="_blank" class="sui-btn btn-bordered btn-danger">加入购物车</a>
-                    <a href="javascript:void(0);" class="sui-btn btn-bordered">收藏</a>
-                  </div>
+    <div>
+        <TypeNav/>
+        <div class="main">
+            <div class="py-container">
+                <!--bread-->
+                <div class="bread">
+                    <ul class="fl sui-breadcrumb">
+                        <li>
+                            <a href="#">全部结果</a>
+                        </li>
+                    </ul>
+                    <ul class="fl sui-tag">
+                        <li class="with-x" v-if="searchParams.categoryName">{{ searchParams.categoryName }}<i
+                                @click="removeCategoryName">×</i>
+                        </li>
+                    </ul>
                 </div>
-              </li>
-            </ul>
-          </div>
-          <div class="fr page">
-            <div class="sui-pagination clearfix">
-              <ul>
-                <li class="prev disabled">
-                  <a href="#">«上一页</a>
-                </li>
-                <li class="active">
-                  <a href="#">1</a>
-                </li>
-                <li>
-                  <a href="#">2</a>
-                </li>
-                <li>
-                  <a href="#">3</a>
-                </li>
-                <li>
-                  <a href="#">4</a>
-                </li>
-                <li>
-                  <a href="#">5</a>
-                </li>
-                <li class="dotted"><span>...</span></li>
-                <li class="next">
-                  <a href="#">下一页»</a>
-                </li>
-              </ul>
-              <div><span>共10页&nbsp;</span></div>
+
+                <!--selector-->
+                <SearchSelector/>
+
+                <!--details-->
+                <div class="details clearfix">
+                    <div class="sui-navbar">
+                        <div class="navbar-inner filter">
+                            <ul class="sui-nav">
+                                <li class="active">
+                                    <a href="#">综合</a>
+                                </li>
+                                <li>
+                                    <a href="#">销量</a>
+                                </li>
+                                <li>
+                                    <a href="#">新品</a>
+                                </li>
+                                <li>
+                                    <a href="#">评价</a>
+                                </li>
+                                <li>
+                                    <a href="#">价格⬆</a>
+                                </li>
+                                <li>
+                                    <a href="#">价格⬇</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="goods-list">
+                        <ul class="yui3-g">
+                            <li class="yui3-u-1-5" v-for="(good, index) in goodsList" :key="good.id">
+                                <div class="list-wrap">
+                                    <div class="p-img">
+                                        <a href="item.html" target="_blank"><img :src="good.defaultImg"/></a>
+                                    </div>
+                                    <div class="price">
+                                        <strong>
+                                            <em>¥</em>
+                                            <i>{{ good.price }}</i>
+                                        </strong>
+                                    </div>
+                                    <div class="attr">
+                                        <a target="_blank" href="item.html"
+                                           title="促销信息，下单即赠送三个月CIBN视频会员卡！【小米电视新品4A 58 火爆预约中】">{{
+                                            good.title
+                                            }}</a>
+                                    </div>
+                                    <div class="commit">
+                                        <i class="command">已有<span>2000</span>人评价</i>
+                                    </div>
+                                    <div class="operate">
+                                        <a href="success-cart.html" target="_blank"
+                                           class="sui-btn btn-bordered btn-danger">加入购物车</a>
+                                        <a href="javascript:void(0);" class="sui-btn btn-bordered">收藏</a>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="fr page">
+                        <div class="sui-pagination clearfix">
+                            <ul>
+                                <li class="prev disabled">
+                                    <a href="#">«上一页</a>
+                                </li>
+                                <li class="active">
+                                    <a href="#">1</a>
+                                </li>
+                                <li>
+                                    <a href="#">2</a>
+                                </li>
+                                <li>
+                                    <a href="#">3</a>
+                                </li>
+                                <li>
+                                    <a href="#">4</a>
+                                </li>
+                                <li>
+                                    <a href="#">5</a>
+                                </li>
+                                <li class="dotted"><span>...</span></li>
+                                <li class="next">
+                                    <a href="#">下一页»</a>
+                                </li>
+                            </ul>
+                            <div><span>共10页&nbsp;</span></div>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
     </div>
-  </div>
 </template>
 
 <script>
@@ -118,52 +118,60 @@ import TypeNav from "@/components/sub/TypeNav.vue";
 import {mapGetters} from "vuex";
 
 export default {
-  name: 'Search',
+    name: 'Search',
 
-  components: {
-    TypeNav,
-    SearchSelector
-  },
-  data() {
-    return {
-      searchParams: {//查看api文档可得
-        category1Id: "",
-        category2Id: "",
-        category3Id: "",
-        categoryName: "",
-        keyword: "",
-        order: "",
-        pageNo: 1,
-        pageSize: 3,
-        props: [],
-        trademark: "",
-      }
+    components: {
+        TypeNav,
+        SearchSelector
+    },
+    data() {
+        return {
+            searchParams: {//查看api文档可得
+                category1Id: "",
+                category2Id: "",
+                category3Id: "",
+                categoryName: "",
+                keyword: "",
+                order: "",
+                pageNo: 1,
+                pageSize: 3,
+                props: [],
+                trademark: "",
+            }
+        }
+    },
+    methods: {
+        getData() {
+            this.$store.dispatch('search/getSearchList', this.searchParams)
+        },
+        removeCategoryName() {
+            //降低请求负载！
+            this.searchParams.categoryName = undefined
+            this.searchParams.category1Id = undefined
+            this.searchParams.category2Id = undefined
+            this.searchParams.category3Id = undefined
+            this.getData()
+        }
+    },
+    beforeMount() {
+        Object.assign(this.searchParams, this.$route.query, {keyword: this.$route.params.searchText || ""})
+    },
+    mounted() {
+        this.getData()
+    },
+    computed: {
+        ...mapGetters('search', ['goodsList'])
+    },
+    watch: {
+        //监控route的变化
+        $route(newVal, oldVal) {
+            Object.assign(this.searchParams, this.$route.query, {keyword: this.$route.params.searchText || ""})
+            this.getData()
+            this.searchParams.category1Id = ''
+            this.searchParams.category2Id = ''
+            this.searchParams.category3Id = ''
+        }
     }
-  },
-  methods: {
-    getData() {
-      this.$store.dispatch('search/getSearchList', this.searchParams)
-    }
-  },
-  beforeMount() {
-    Object.assign(this.searchParams, this.$route.query, {keyword: this.$route.params.searchText || ""})
-  },
-  mounted() {
-    this.getData()
-  },
-  computed: {
-    ...mapGetters('search', ['goodsList'])
-  },
-  watch: {
-    //监控route的变化
-    $route(newVal, oldVal) {
-      Object.assign(this.searchParams, this.$route.query, {keyword: this.$route.params.searchText || ""})
-      this.getData()
-      this.searchParams.category1Id = ''
-      this.searchParams.category2Id = ''
-      this.searchParams.category3Id = ''
-    }
-  }
 }
 </script>
 
