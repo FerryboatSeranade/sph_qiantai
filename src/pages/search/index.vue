@@ -11,8 +11,11 @@
                         </li>
                     </ul>
                     <ul class="fl sui-tag">
-                        <li class="with-x" v-if="searchParams.categoryName">{{ searchParams.categoryName }}<i
-                                @click="removeCategoryName">×</i>
+                        <li class="with-x" v-if="searchParams.categoryName">{{ searchParams.categoryName }}
+                            <i @click="removeCategoryName">×</i>
+                        </li>
+                        <li class="with-x" v-if="searchParams.keyword">{{ searchParams.keyword }}
+                            <i @click="removeKeyword">×</i>
                         </li>
                     </ul>
                 </div>
@@ -155,6 +158,15 @@ export default {
             this.$router.push({
                 name: 'Search',
                 params: this.$route.params
+            })
+        },
+        removeKeyword() {
+            this.searchParams.keyword = undefined
+            //通知Header组件删除掉搜索框中的内容
+            this.$bus.$emit('clear')
+            this.$router.push({
+                name: 'Search',
+                query: this.$route.query
             })
         }
     },

@@ -13,7 +13,10 @@ Vue.config.productionTip = false
 const vm = new Vue({
     render: h => h(App),
     router,
-    store
+    store,
+    beforeCreate() {
+        Vue.prototype.$bus = this
+    }
 }).$mount('#app')
 
 console.log("vm", vm)
